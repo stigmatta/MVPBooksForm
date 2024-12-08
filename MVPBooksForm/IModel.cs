@@ -3,6 +3,6 @@
     public interface IModel
     {
         void SaveToFile();
-        void DeleteFromFile();
+        void DeleteFromFile(string title);
     }
 }

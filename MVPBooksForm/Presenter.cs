@@ -41,6 +41,8 @@
             if (view.IsDelInputEmpty())
             {
                 view.DisplayError("Delete input is empty");
+                view.ClearTextBox();
+                model.SaveToFile();
                 return;
             }
 
@@ -50,7 +52,7 @@
                 model.SaveToFile();
                 return;
             }
-            model.DeleteBookFromList(view.GetDelInputText());
+            model.DeleteFromFile(view.GetDelInputText());
             view.ClearTextBox();
             model.SaveToFile();
 

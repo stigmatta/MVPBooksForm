@@ -23,11 +23,6 @@ namespace MVPBooksForm
             Books.Add(book);
         }
 
-        public void DeleteFromFile()
-        {
-            throw new NotImplementedException();
-        }
-
         public void LoadBooksFromJSON()
         {
             if (!File.Exists(filePath))
@@ -63,7 +58,7 @@ namespace MVPBooksForm
             }
         }
 
-        public void DeleteBookFromList(string title)
+        public void DeleteFromFile(string title)
         {
             Books.RemoveAll(item => item.BookName == title);
         }
