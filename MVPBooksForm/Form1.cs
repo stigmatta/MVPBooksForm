@@ -60,7 +60,7 @@ namespace MVPBooksForm
             MessageBox.Show($"{message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public string FormattedBook(Book book)
+        private string FormattedBook(Book book)
         {
             return $"Title: {book.BookName}\t" +
                 $"Author: {book.Author}\n";
