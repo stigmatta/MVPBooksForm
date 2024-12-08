@@ -19,6 +19,13 @@
         public void SaveToFile(object sender, EventArgs e)
         {
             view.GetAllInfo();
+            if (view.BookObj.Year < 0 || view.BookObj.Year > DateTime.Now.Year)
+            {
+                view.DisplayError("Year is not correct");
+                view.ClearTextBox();
+                model.SaveToFile();
+                return;
+            }
             if (view.AreFieldsEmpty())
             {
                 view.DisplayError("Some fields are empty.");
@@ -55,7 +62,7 @@
             model.DeleteFromFile(view.GetDelInputText());
             view.ClearTextBox();
             model.SaveToFile();
-
+            view.DisplayDeleted();
         }
 
 

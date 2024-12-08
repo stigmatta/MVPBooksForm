@@ -8,7 +8,7 @@ namespace MVPBooksForm
         public Form1()
         {
             InitializeComponent();
-            BookObj =new Book();
+            BookObj = new Book();
 
         }
 
@@ -18,7 +18,7 @@ namespace MVPBooksForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public void GetAllInfo()
@@ -57,7 +57,7 @@ namespace MVPBooksForm
 
         public void DisplayError(string message)
         {
-            MessageBox.Show($"{message}","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            MessageBox.Show($"{message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public string FormattedBook(Book book)
@@ -77,11 +77,11 @@ namespace MVPBooksForm
 
         public bool AreFieldsEmpty()
         {
-            if(String.IsNullOrEmpty(textBoxName.Text))
+            if (String.IsNullOrEmpty(textBoxName.Text))
                 return true;
             if (String.IsNullOrEmpty(textBoxAuthor.Text))
                 return true;
-            if(String.IsNullOrEmpty(textBoxGenre.Text))
+            if (String.IsNullOrEmpty(textBoxGenre.Text))
                 return true;
             if (String.IsNullOrEmpty(textBoxYear.Text))
                 return true;
@@ -95,7 +95,7 @@ namespace MVPBooksForm
 
         public void ShowBooks(List<Book> books)
         {
-            foreach(var book in books)
+            foreach (var book in books)
             {
                 richTextBox1.AppendText(FormattedBook(book));
             }
@@ -108,7 +108,8 @@ namespace MVPBooksForm
 
         public DialogResult DisplayWarning(string message)
         {
-            return MessageBox.Show($"{message}","Warning",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+            return MessageBox.Show($"{message}", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
+
     }
 }
