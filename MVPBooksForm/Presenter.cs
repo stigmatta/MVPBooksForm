@@ -22,8 +22,7 @@
             if (view.BookObj.Year < 0 || view.BookObj.Year > DateTime.Now.Year)
             {
                 view.DisplayError("Year is not correct");
-                view.ClearTextBox();
-                model.SaveToFile();
+                RefreshTextBox();
                 return;
             }
             if (view.AreFieldsEmpty())
@@ -32,8 +31,7 @@
                 return;
             }
             model.AddBookToList(view.BookObj);
-            view.ClearTextBox();
-            model.SaveToFile();
+            RefreshTextBox();
             view.DisplaySaved();
         }
 
@@ -48,21 +46,24 @@
             if (view.IsDelInputEmpty())
             {
                 view.DisplayError("Delete input is empty");
-                view.ClearTextBox();
-                model.SaveToFile();
+                RefreshTextBox();
                 return;
             }
 
             DialogResult res = view.DisplayWarning("Are you sure want to delete it?");
             if (res != DialogResult.OK) {
-                view.ClearTextBox();
-                model.SaveToFile();
+                RefreshTextBox();
                 return;
             }
             model.DeleteFromFile(view.GetDelInputText());
+            RefreshTextBox();
+            view.DisplayDeleted();
+        }
+
+        public void RefreshTextBox()
+        {
             view.ClearTextBox();
             model.SaveToFile();
-            view.DisplayDeleted();
         }
 
 
