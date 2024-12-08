@@ -60,7 +60,7 @@
             view.DisplayDeleted();
         }
 
-        public void RefreshTextBox()
+        private void RefreshTextBox()
         {
             view.ClearTextBox();
             model.SaveToFile();
