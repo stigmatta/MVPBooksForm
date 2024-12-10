@@ -14,9 +14,12 @@
             view.SaveToFileClicked += new EventHandler<EventArgs>(DisplayList);
             view.DeleteFromFileClicked += new EventHandler<EventArgs>(DeleteFromFile);
             view.DeleteFromFileClicked += new EventHandler<EventArgs>(DisplayList);
+            view.DeleteAllClicked += new EventHandler<EventArgs>(DeleteAllBooks);
+            view.ReturnFirstClicked += new EventHandler<EventArgs>(ReturnFirstBook);
+            view.ExitButtonClicked += new EventHandler<EventArgs>(ExitFromForm);
         }
 
-        public void SaveToFile(object sender, EventArgs e)
+        private void SaveToFile(object sender, EventArgs e)
         {
             view.GetAllInfo();
             if (view.BookObj.Year < 0 || view.BookObj.Year > DateTime.Now.Year)
@@ -35,13 +38,13 @@
             view.DisplaySaved();
         }
 
-        public void DisplayList(object sender,EventArgs e)
+        private void DisplayList(object sender,EventArgs e)
         {
             model.LoadBooksFromJSON();
             view.ShowBooks(model.Books);
         }
 
-        public void DeleteFromFile(object sender, EventArgs e)
+        private void DeleteFromFile(object sender, EventArgs e)
         {
             if (view.IsDelInputEmpty())
             {
@@ -60,10 +63,37 @@
             view.DisplayDeleted();
         }
 
+        private void DeleteAllBooks(object sender,EventArgs e)
+        {
+            DialogResult res = view.DisplayWarning("Are you sure want to delete all books?");
+            if (res != DialogResult.OK)
+            {
+                RefreshTextBox();
+                return;
+            }
+
+            for(int i =0;i<model.Books.Count;i++) {
+                model.DeleteFromFile(model.Books[i].BookName);
+            }
+            RefreshTextBox();
+            view.DisplayDeleted();
+        }
+
+        private void ReturnFirstBook(object sender, EventArgs e)
+        {
+            Book tmp = model.Books[0];
+            MessageBox.Show($"Title:{tmp.BookName}\nAuthor:{tmp.Author}\nGenre:{tmp.Genre}\nYear:{tmp.Year}");
+        }
+
         private void RefreshTextBox()
         {
             view.ClearTextBox();
             model.SaveToFile();
+        }
+
+        private void ExitFromForm(object sender,EventArgs e)
+        {
+            view.CloseForm();
         }
 
 

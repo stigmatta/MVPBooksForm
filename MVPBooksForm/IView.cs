@@ -14,9 +14,13 @@
         public void ClearTextBox();
         public bool IsDelInputEmpty();
         public string GetDelInputText();
+        public void CloseForm();
 
         event EventHandler<EventArgs> SaveToFileClicked;
         event EventHandler<EventArgs> DeleteFromFileClicked;
+        event EventHandler<EventArgs> DeleteAllClicked;
+        event EventHandler<EventArgs> ReturnFirstClicked;
+        event EventHandler<EventArgs> ExitButtonClicked;
     }
 
 }

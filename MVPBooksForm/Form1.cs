@@ -15,10 +15,18 @@ namespace MVPBooksForm
 
         public event EventHandler<EventArgs> SaveToFileClicked;
         public event EventHandler<EventArgs> DeleteFromFileClicked;
+        public event EventHandler<EventArgs> DeleteAllClicked;
+        public event EventHandler<EventArgs> ReturnFirstClicked;
+        public event EventHandler<EventArgs> ExitButtonClicked;
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void CloseForm()
+        {
+            Close();
         }
 
         public void GetAllInfo()
@@ -111,5 +119,35 @@ namespace MVPBooksForm
             return MessageBox.Show($"{message}", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
 
+        private void deleteAll_Click(object sender, EventArgs e)
+        {
+            DeleteAllClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void returnFirst_Click(object sender, EventArgs e)
+        {
+            ReturnFirstClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExitButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            DeleteAllClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            ReturnFirstClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void exitToolLabel_Click(object sender, EventArgs e)
+        {
+            ExitButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
